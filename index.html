@@ -8,12 +8,20 @@
   <title>오늘의 기록 — 하루를 차곡차곡</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script src="auth.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="./" aria-label="오늘의 기록 홈"><span class="brand-icon">日</span><span>오늘의 기록<small>하루를 차곡차곡</small></span></a>
-      <div class="live-date"><span class="live-dot"></span><time id="live-date"></time><time id="live-clock"></time></div>
+      <div class="header-actions">
+        <div class="live-date"><span class="live-dot"></span><time id="live-date"></time><time id="live-clock"></time></div>
+        <div class="account-actions" aria-label="내 계정">
+          <button id="open-auth" class="account-button" type="button">로그인</button>
+          <span id="account-email" hidden></span>
+          <button id="logout" class="account-button secondary" type="button" hidden>로그아웃</button>
+        </div>
+      </div>
     </header>
     <main>
       <section class="intro"><div><p class="eyebrow">A LITTLE SPACE FOR YOUR DAY</p><h1>오늘은 어떤 하루인가요?</h1><p>작은 할 일부터 오래 기억하고 싶은 순간까지, 여기에 남겨보세요.</p></div><span class="intro-art" aria-hidden="true">✳</span></section>
@@ -40,5 +48,25 @@
     <footer><span>오늘의 기록 <span class="footer-divider">/</span> 나만의 속도로, 하루 한 페이지.</span><div><button id="export-data" class="text-button">백업 내보내기 ↓</button><button id="import-data" class="text-button">백업 불러오기 ↑</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></footer>
     <p id="message" class="toast" role="status" aria-live="polite" hidden></p>
   </div>
+  <dialog id="auth-dialog" aria-labelledby="auth-title" aria-describedby="auth-description">
+    <button id="close-auth" class="auth-close" type="button" aria-label="로그인 창 닫기">×</button>
+    <p class="eyebrow">YOUR DAILY ACCOUNT</p>
+    <h2 id="auth-title">다시 만나 반가워요</h2>
+    <p id="auth-description">이메일과 비밀번호로 로그인하세요.</p>
+    <div class="auth-tabs" role="group" aria-label="인증 방식">
+      <button id="login-mode" type="button" aria-pressed="true">로그인</button>
+      <button id="signup-mode" type="button" aria-pressed="false">회원가입</button>
+    </div>
+    <form id="auth-form">
+      <label for="auth-email">이메일</label>
+      <input id="auth-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required>
+      <label for="auth-password">비밀번호</label>
+      <input id="auth-password" name="password" type="password" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required>
+      <p id="password-help" hidden>비밀번호는 8자 이상으로 입력하세요.</p>
+      <p id="auth-feedback" role="status" aria-live="polite"></p>
+      <button id="auth-submit" class="account-button" type="submit">로그인</button>
+    </form>
+    <p class="auth-storage-info">할 일과 메모는 현재 브라우저에 저장됩니다.<br>로그인 후에도 기기 간 동기화는 제공되지 않습니다.</p>
+  </dialog>
 </body>
 </html>

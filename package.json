@@ -1,0 +1,10 @@
+{
+  "name": "jobtodo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env.local scripts/dev.cjs",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "engines": { "node": ">=22" }
+}

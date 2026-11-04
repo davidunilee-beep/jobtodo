@@ -6,3 +6,31 @@
 @media(max-width:900px){.app-shell{padding:0 24px}.workspace{grid-template-columns:310px minmax(0,1fr);gap:18px}.calendar-panel{padding:23px 18px}.day-panel{padding:25px 22px}.section-heading>span{font-size:9px}.intro-art{padding:0}.day-header h2{font-size:22px}.note-footer>span:last-child{display:none}}
 @media(max-width:700px){.app-shell{padding:0 18px}.topbar{height:87px}.brand{font-size:17px}.brand-icon{width:36px;height:39px}.brand small{font-size:8px}.live-date{display:block;text-align:right;font-size:10px}.live-dot{display:none}#live-date{display:block;margin-bottom:4px}#live-clock{border:0;padding:0}.intro{padding:30px 0 25px}.intro .eyebrow{font-size:8px;letter-spacing:1.6px}h1{font-size:25px}.intro p:last-child{font-size:11px;max-width:260px}.intro-art{font-size:56px}.workspace{grid-template-columns:1fr;gap:20px}.calendar-panel{padding:23px}.calendar-grid{gap:3px 8px}.calendar-day{aspect-ratio:auto;min-height:42px}.calendar-header{margin-bottom:18px}.calendar-legend{margin-bottom:20px}.monthly-summary{padding:17px;display:flex;flex-wrap:wrap;align-items:center;gap:7px}.monthly-summary .eyebrow{width:100%;margin:0}.monthly-summary h3{flex:1;font-size:11px}.stats{margin:0;min-width:130px}.stats strong{font-size:20px}.stats span{font-size:8px}.stats>div+div{padding-left:15px}.storage-note{margin-top:12px}.storage-note br{display:none}.day-panel{min-height:620px;padding:25px 23px}.day-header h2{font-size:24px}.note-footer>span:last-child{display:block;font-size:8px}footer{flex-direction:column-reverse;gap:12px;padding:20px 0 25px}footer>div{gap:30px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Account controls and the accessible native authentication dialog. */
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:24px;min-width:0}
+.account-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;min-width:0}
+.account-button{border:1px solid var(--green);background:var(--green);color:white;border-radius:9px;padding:9px 16px;font-size:12px;white-space:nowrap}
+.account-button:hover{background:#436455}
+.account-button.secondary{background:transparent;color:var(--green);border-color:#d5dece}
+.account-button.secondary:hover{background:var(--soft)}
+#account-email{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--green)}
+[hidden]{display:none!important}
+#auth-dialog{width:calc(100% - 36px);max-width:420px;max-height:calc(100dvh - 40px);overflow-y:auto;border:1px solid var(--line);border-radius:18px;padding:36px 30px 25px;background:var(--paper);color:var(--ink);box-shadow:0 20px 90px #1c302b33}
+#auth-dialog::backdrop{background:#1d322b70;backdrop-filter:blur(3px)}
+.auth-close{position:absolute;right:16px;top:12px;border:0;background:none;font-size:25px;color:var(--muted);border-radius:5px;width:32px;height:32px}
+#auth-title{font-size:22px;letter-spacing:-.8px;margin:0 0 10px}
+#auth-description{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
+.auth-tabs{display:flex;gap:4px;padding:4px;background:var(--soft);border-radius:10px;margin:24px 0}
+.auth-tabs button{width:50%;border:0;background:transparent;border-radius:7px;padding:9px;font-size:12px;color:#87907e}
+.auth-tabs button[aria-pressed=true]{background:var(--paper);color:var(--green);box-shadow:0 1px 4px #304d4210}
+#auth-form label{display:block;margin:17px 0 8px;font-size:12px;font-weight:500}
+#auth-form input{width:100%;border:1px solid #dfe4d7;border-radius:9px;background:#fafbf6;color:var(--ink);padding:12px;font-size:14px}
+#password-help{font-size:10px;color:var(--muted);line-height:1.6;margin:8px 0 0}
+#auth-feedback{font-size:12px;line-height:1.8;color:var(--green);margin:16px 0;overflow-wrap:anywhere}
+#auth-feedback:empty{margin:20px 0 0}
+#auth-feedback.error{color:#a05240}
+#auth-submit{width:100%;margin-top:4px;padding:12px}
+.auth-storage-info{font-size:10px;color:var(--muted);line-height:1.9;text-align:center;border-top:1px solid var(--line);margin:23px 0 0;padding-top:17px}
+@media(max-width:1000px){.header-actions{gap:15px}.header-actions .live-date{display:none}}
+@media(max-width:700px){.topbar{height:auto;min-height:92px;gap:12px;padding:19px 0;align-items:flex-start}.header-actions{flex:1;flex-direction:column;align-items:flex-end;gap:8px}.header-actions .live-date{display:block}.account-actions{flex-wrap:wrap;max-width:185px;gap:7px}#account-email{max-width:180px;font-size:10px}.account-button{font-size:10px;padding:6px 11px}#auth-dialog{padding:34px 23px 23px}#auth-form input{font-size:16px}}
