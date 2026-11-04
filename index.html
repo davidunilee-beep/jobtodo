@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#304d42">
+  <meta name="description" content="달력에 차곡차곡 쌓는 하루. 날짜별 할 일과 메모를 기록하는 오늘의 기록.">
+  <title>오늘의 기록 — 하루를 차곡차곡</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="오늘의 기록 홈"><span class="brand-icon">日</span><span>오늘의 기록<small>하루를 차곡차곡</small></span></a>
+      <div class="live-date"><span class="live-dot"></span><time id="live-date"></time><time id="live-clock"></time></div>
+    </header>
+    <main>
+      <section class="intro"><div><p class="eyebrow">A LITTLE SPACE FOR YOUR DAY</p><h1>오늘은 어떤 하루인가요?</h1><p>작은 할 일부터 오래 기억하고 싶은 순간까지, 여기에 남겨보세요.</p></div><span class="intro-art" aria-hidden="true">✳</span></section>
+      <div class="workspace">
+        <aside class="calendar-panel card" aria-label="날짜 선택">
+          <div class="calendar-header"><h2 id="month-title"></h2><div class="month-controls"><button id="prev-month" class="icon-button" aria-label="이전 달">‹</button><button id="next-month" class="icon-button" aria-label="다음 달">›</button></div></div>
+          <div class="calendar-weekdays" aria-hidden="true"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+          <div id="calendar" class="calendar-grid"></div>
+          <div class="calendar-legend"><span><i></i>기록이 있는 날</span><button id="go-today" class="text-button">오늘로 이동 ↗</button></div>
+          <div class="monthly-summary"><p class="eyebrow">THIS MONTH</p><h3>조금씩, 꾸준히 쌓이는 하루</h3><div class="stats"><div><strong id="record-days">0</strong><span>기록한 날</span></div><div><strong id="completed-total">0</strong><span>완료한 할 일</span></div></div></div>
+          <div class="storage-note"><span aria-hidden="true">↳</span><p>기록은 이 브라우저에 저장돼요.<br>소중한 기록은 백업해 보관하세요.</p></div>
+        </aside>
+        <section class="day-panel card" aria-labelledby="selected-title">
+          <div class="day-header"><div><p id="selected-label" class="eyebrow"></p><h2 id="selected-title"></h2></div><span id="day-badge" class="badge"></span></div>
+          <div class="progress-area"><div><span>오늘의 작은 성취</span><strong id="progress-label">0 / 0 완료</strong></div><div class="progress-track"><div id="progress-bar"></div></div></div>
+          <section class="todo-section" aria-labelledby="todo-heading"><div class="section-heading"><h3 id="todo-heading">할 일 <span id="todo-count">0</span></h3><span>한 가지씩, 가볍게 시작해요</span></div>
+            <form id="todo-form"><label class="sr-only" for="todo-input">새로운 할 일</label><input id="todo-input" maxlength="300" placeholder="어떤 일을 해볼까요?" autocomplete="off" required><button class="add-button" type="submit" aria-label="할 일 추가">＋</button></form>
+            <ul id="todo-list"></ul><div id="empty-todos" class="empty-state"><span aria-hidden="true">☑</span><p>아직 할 일이 없어요</p><small>작은 할 일 하나로 하루를 시작해 보세요.</small></div>
+          </section>
+          <section class="memo-section" aria-labelledby="memo-heading"><div class="section-heading"><h3 id="memo-heading">하루 메모</h3><span id="save-status" role="status" aria-live="polite">자동 저장</span></div><label class="sr-only" for="daily-note">선택한 날짜의 메모</label><textarea id="daily-note" maxlength="50000" placeholder="오늘의 생각, 기억하고 싶은 순간을 자유롭게 적어보세요."></textarea><div class="note-footer"><span id="note-count">0자</span><span>당신의 평범한 하루도 소중한 기록이에요.</span></div></section>
+        </section>
+      </div>
+    </main>
+    <footer><span>오늘의 기록 <span class="footer-divider">/</span> 나만의 속도로, 하루 한 페이지.</span><div><button id="export-data" class="text-button">백업 내보내기 ↓</button><button id="import-data" class="text-button">백업 불러오기 ↑</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></footer>
+    <p id="message" class="toast" role="status" aria-live="polite" hidden></p>
+  </div>
+</body>
+</html>
