@@ -70,6 +70,8 @@ git push -u origin main
 
 ## Supabase 설정
 
+Vercel의 기존 Supabase 연동이 다른 프로젝트를 가리키는 경우 `JOBTODO_SUPABASE_URL`과 `JOBTODO_SUPABASE_PUBLISHABLE_KEY`를 함께 등록하면 이 앱에서 우선 사용합니다. 두 값 중 하나만 등록하면 다른 프로젝트의 키와 섞이지 않도록 설정 오류를 반환합니다. 기존 연동이 관리하는 변수는 그대로 유지합니다.
+
 Vercel 프로젝트의 **Settings → Environment Variables**에서 배포 환경(Production 및 필요한 경우 Preview)에 등록하세요.
 
 | 변수 | 값 |

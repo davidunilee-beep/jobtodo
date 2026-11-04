@@ -4,6 +4,7 @@ const handler = require('../api/config.js');
 
 function request(env, method = 'GET') {
   const names = [
+    'JOBTODO_SUPABASE_URL', 'JOBTODO_SUPABASE_PUBLISHABLE_KEY',
     'SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_URL', 'VITE_SUPABASE_URL',
     'SUPABASE_PUBLISHABLE_KEY', 'SUPABASE_ANON_KEY',
     'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY', 'NEXT_PUBLIC_SUPABASE_ANON_KEY',
@@ -25,6 +26,14 @@ function request(env, method = 'GET') {
 
 const publicEnv = { SUPABASE_URL: 'https://example.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test_only' };
 const jwt = (role) => `eyJhbGciOiJIUzI1NiJ9.${Buffer.from(JSON.stringify({ role })).toString('base64url')}.test`;
+
+test('app override replaces an integration project as a complete pair', () => {
+  const res = request({ ...publicEnv, JOBTODO_SUPABASE_URL: 'https://other.supabase.co', JOBTODO_SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_other' });
+  assert.equal(res.code, 200);
+  assert.deepEqual(res.body, { supabaseUrl: 'https://other.supabase.co', supabaseKey: 'sb_publishable_other' });
+  assert.equal(request({ ...publicEnv, JOBTODO_SUPABASE_URL: 'https://other.supabase.co' }).code, 503);
+  assert.equal(request({ ...publicEnv, JOBTODO_SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_other' }).code, 503);
+});
 
 test('returns only public configuration and prevents caching', () => {
   const res = request({ ...publicEnv, SUPABASE_SERVICE_ROLE_KEY: 'private-test-marker' });

@@ -8,8 +8,11 @@ module.exports = function handler(req, res) {
     return res.status(405).json({ error: '허용되지 않은 요청입니다.' });
   }
 
-  const url = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').trim();
-  const key = (process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '').trim();
+  // Integration-managed variables cannot be edited in Vercel. Keep the app
+  // override as a pair so URLs and keys from different projects never mix.
+  const override = process.env.JOBTODO_SUPABASE_URL !== undefined || process.env.JOBTODO_SUPABASE_PUBLISHABLE_KEY !== undefined;
+  const url = (override ? process.env.JOBTODO_SUPABASE_URL || '' : process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').trim();
+  const key = (override ? process.env.JOBTODO_SUPABASE_PUBLISHABLE_KEY || '' : process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '').trim();
 
   try {
     if (new URL(url).protocol !== 'https:') throw new Error('Invalid URL');
